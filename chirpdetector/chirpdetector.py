@@ -7,7 +7,7 @@ import pathlib
 from typing import Callable
 
 import rich_click as click
-import toml
+# import toml
 
 from chirpdetector.config import copy_config
 
@@ -47,8 +47,16 @@ click.rich_click.USE_MARKDOWN = True
 #     ]
 # }
 
-pyproject = toml.load(pathlib.Path(__file__).parent.parent / "pyproject.toml")
-__version__ = pyproject["tool"]["poetry"]["version"]
+try:
+    from importlib.metadata import version
+    __version__ = version("chirpdetector")
+except ImportError:
+    # Fallback for older Python versions
+    try:
+        import pkg_resources
+        __version__ = pkg_resources.get_distribution("chirpdetector").version
+    except:
+        __version__ = "0.0.1"  # Fallback version
 
 
 def add_version(f: Callable) -> Callable:
