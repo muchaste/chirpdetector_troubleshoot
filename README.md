@@ -56,7 +56,7 @@ It consists of two main steps:
 **Step 2:** Install this package using pip:
 
 ```bash
-pip install git+https://github.com/weygoldt/chirpdetector.git
+pip install git+https://github.com/muchaste/chirpdetector_troubleshoot.git
 ```
 
 **Step 3:** Copy the default config to the dataset root:
